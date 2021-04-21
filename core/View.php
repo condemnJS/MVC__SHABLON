@@ -8,6 +8,7 @@ class View
 {
     static public $path_to_view = APP_DIR . "/resources/views/";
     static public $layout_path = '';
+    static public $section_template = "";
 
     static public function setLayout($layout)
     {
