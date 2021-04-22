@@ -17,8 +17,9 @@ function view($title)
 {
     View::$section_template = View::ob_view(View::$path_to_view . $title . ".php");
     if(View::$layout_path) {
-        $replaceableCount = preg_match("/<section class='section_replacer_template'>[a-zа-яё\d\s<>а-яА-Я\/]*<\/section>/u", View::$section_template, $replaceable);
-        View::$section_template = preg_replace("/<section class='section_replacer_template'>[a-zа-яё\d\s<>а-яА-Я\/]*<\/section>/u", '', View::$section_template);
+        $replaceableCount = preg_match("/<section class='section_replacer_template'>[a-zA-Z\d\s=\"'-<>а-яёА-Я\/]*<\/section>/u", View::$section_template, $replaceable);
+        View::$section_template = preg_replace("/<section class='section_replacer_template'>[a-zA-Z\d\s=\"'-<>а-яёА-Я\/]*<\/section>/u", '', View::$section_template);
+//        var_dump( View::$section_template);
         echo str_replace("{{ section }}", $replaceable[0], View::$section_template);
     } else {
         echo View::$section_template;

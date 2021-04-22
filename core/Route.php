@@ -4,7 +4,7 @@
 namespace Core;
 
 
-class Route
+final class Route
 {
     static public $routes = [];
     public $request;
