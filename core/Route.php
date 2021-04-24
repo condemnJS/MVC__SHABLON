@@ -41,6 +41,10 @@ final class Route
     {
         $current_method = $this->request->method();
         $current_path = $this->request->path();
-        echo call_user_func(self::$routes[$current_method][$current_path], $this->request);
+        $callback = self::$routes[$current_method][$current_path];
+        if(is_array($callback)) {
+            $callback[0] = new $callback[0]();
+        }
+        echo call_user_func($callback, $this->request);
     }
 }

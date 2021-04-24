@@ -9,11 +9,13 @@ abstract class Model
     protected $fillables = [];
     protected $table;
 
-    private $db;
-
-    public static function create()
-    {
-
+    public static function create(array $arr)
+    {   
+        // Позднее статическое связывание создаём объект класса
+        $currentModel = new static;
+        DB::table($currentModel->table)->insert([
+            $arr
+        ]);
     }
 
     public function get()
