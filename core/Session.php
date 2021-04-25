@@ -8,7 +8,10 @@ class Session {
     }
 
     static public function get(string $session) {
-        return $_SESSION[$session];
+        if(isset($_SESSION[$session])) {
+            return $_SESSION[$session];
+        }
+        return null;
     }
 
     static public function set(string $session, $value) {

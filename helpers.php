@@ -42,6 +42,10 @@ function error($name) {
     }
 }
 
+function session($name) {
+    return Session::get($name);
+}
+
 function hasError($name) {
     if(Session::has('errors')) {
         return isset(Session::get('errors')[$name]);

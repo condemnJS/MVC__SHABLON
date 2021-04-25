@@ -13,7 +13,6 @@ class Validator {
     public $errors;
 
     static public function make(array $requests, array $rules) {
-        $errors = [];
         $validator = new self;
         $validator->errors = $validator->check($requests, $rules);
         return $validator;

@@ -8,6 +8,7 @@ final class DB
 {
     private $connect;
     protected $request;
+    private $conditions;
 
     public $table;
 
@@ -33,7 +34,8 @@ final class DB
 
     private function execute()
     {
-        return $this->request->execute();
+        $this->request->execute();
+        return $this->request;
     }
 
     public static function table(string $table) 
@@ -52,5 +54,39 @@ final class DB
                 $this->prepare("INSERT INTO $this->table ($keys) VALUES ($values)")->execute();
             }
         }
+    }
+
+    private function query(string $sql) {
+        return $this->connect->query($sql);
+    }
+
+    public function where(string $condition, string $value) {
+        $this->conditions[$this->table][] = [$condition => $value];
+        return $this;
+    }
+
+    private function generateRequest() {
+        $cond = "";
+        $counter = 0;
+        foreach ($this->conditions[$this->table] as $stek) {
+            foreach ($stek as $key => $value) {
+                $cond .= "$key = '$value'";
+                $counter++;
+                if($counter !== count($this->conditions[$this->table])) {
+                    $cond .= " AND ";
+                }
+            }
+        }
+        return $this->prepare("SELECT * FROM $this->table WHERE $cond")->execute()->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function first() {
+        if(!empty($this->generateRequest())) {
+            return $this->generateRequest()[0];
+        }
+    }
+
+    public function get() {
+        return $this->generateRequest();
     }
 }

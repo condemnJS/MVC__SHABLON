@@ -10,6 +10,7 @@ use Core\DB;
 use App\Http\Models\User;
 use Core\Session;
 use Core\Validator;
+use Core\Auth;
 
 class UserController extends Controller
 {
@@ -20,6 +21,8 @@ class UserController extends Controller
                 'email' => 'required|email',
                 'password' => 'required|min:6'
             ])->validate();
+
+            Auth::attempt($request->all());
         }
         return view('login');
     }
