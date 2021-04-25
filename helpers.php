@@ -1,6 +1,8 @@
 <?php
 
+use Core\Session;
 use Core\View;
+
 
 // Функция дебагинга, для более просто работы
 function dump(...$params)
@@ -17,12 +19,32 @@ function view($title)
 {
     View::$section_template = View::ob_view(View::$path_to_view . $title . ".php");
     if(View::$layout_path) {
-        $replaceableCount = preg_match("/<section class='section_replacer_template'>[a-zA-Z\d\s=\"'-<>а-яёА-Я\/]*<\/section>/u", View::$section_template, $replaceable);
-        View::$section_template = preg_replace("/<section class='section_replacer_template'>[a-zA-Z\d\s=\"'-<>а-яёА-Я\/]*<\/section>/u", '', View::$section_template);
-//        var_dump( View::$section_template);
+        $replaceableCount = preg_match("/<section class='section_replacer_template'>[a-zA-Z\d\s=\"'-?:;_<>а-яёА-Я\/]*<\/section>/u", View::$section_template, $replaceable);
+        View::$section_template = preg_replace("/<section class='section_replacer_template'>[a-zA-Z\d\s=\"'-?:;_<>а-яёА-Я\/]*<\/section>/u", '', View::$section_template);
         echo str_replace("{{ section }}", $replaceable[0], View::$section_template);
     } else {
         echo View::$section_template;
+    }
+}
+
+function redirect($name) {
+    header('Location: ' . $name);
+}
+
+function back() {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+}
+
+function error($name) {
+    if(Session::has('errors')) {
+        return Session::get('errors')[$name][0];
+    }
+}
+
+function hasError($name) {
+    if(Session::has('errors')) {
+        return isset(Session::get('errors')[$name]);
     }
 }
 

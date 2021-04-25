@@ -8,24 +8,39 @@ use Core\Request;
 use Core\Hash;
 use Core\DB;
 use App\Http\Models\User;
+use Core\Session;
+use Core\Validator;
 
 class UserController extends Controller
 {
     public function login(Request $request)
     {
         if($request->method() === 'post') {
-            User::create([
-                'id' => 3,
-                'fio' => 'Гизатулин Султан Камильевич',
-                'email' => 'tatar@mail.ru',
-                'password' => 'asd228'
-            ]);
+            Validator::make($request->all(), [
+                'email' => 'required|email',
+                'password' => 'required|min:6'
+            ])->validate();
         }
         return view('login');
     }
 
-    public function register()
+    public function register(Request $request)
     {
+        if($request->method() === 'post') {
+            Validator::make($request->all(), [
+                'fio' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|confirm|min:6'
+            ])->validate();
+    
+            User::create([
+                'email' => $request->email,
+                'fio' => $request->fio,
+                'password' => Hash::make($request->password)
+            ]);
+
+            return redirect('login');
+        }
         return view('register');
     }
 }

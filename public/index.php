@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // Путь до корня нашего приложения
 define("APP_DIR",dirname(__DIR__, 1));
 
