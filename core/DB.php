@@ -15,9 +15,8 @@ final class DB
     public function __construct() // Подключение к БД
     {
         // Подключаем конфиги
-        require_once APP_DIR . "/configs.php";
+        require APP_DIR . "/configs.php";
         ['host' => $host, 'db' => $db, 'user' => $user, 'password' => $password] = $configs;
-
         try {
             $this->connect = new \PDO("mysql:host={$host};dbname={$db};charset=UTF8", $user, $password);
         } catch (\PDOException $e) {
@@ -54,6 +53,11 @@ final class DB
                 $this->prepare("INSERT INTO $this->table ($keys) VALUES ($values)")->execute();
             }
         }
+    }
+
+    public function all() 
+    {
+        return $this->query("SELECT * FROM $this->table")->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     private function query(string $sql) {

@@ -44,7 +44,8 @@ class Validator {
         $errors = $this->errors;
         Session::set('errors', $errors);
         if($errors) {
-            return back();  
+            back();
+            exit;
         }
     }
 

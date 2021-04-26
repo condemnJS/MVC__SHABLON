@@ -34,6 +34,9 @@ class Request
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
+        foreach ($_FILES as $key => $item) {
+            $body[$key] = $item['name'];
+        }
         return $body;
     }
 
@@ -47,5 +50,9 @@ class Request
         if(array_key_exists($name, $_POST)) {
             return $this->body()[$name];
         }
+    }
+
+    public function file(string $filename) {
+        return $_FILES[$filename];
     }
 }

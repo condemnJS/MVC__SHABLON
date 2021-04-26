@@ -17,4 +17,10 @@ class Session {
     static public function set(string $session, $value) {
         $_SESSION[$session] = $value;
     }
+
+    static public function clear(string $key) {
+        if(isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
+    }
 }

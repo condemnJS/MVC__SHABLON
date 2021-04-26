@@ -10,19 +10,22 @@ final class Route
     public $request;
     public $view;
 
-    public function __construct($request)
+    public function __construct($request = [])
     {
         // Подключаем сами роуты созданные пользователем
         require_once APP_DIR . "/routes/api.php";
         require_once APP_DIR . "/routes/web.php";
 
         $this->request = $request;
-        $this->start();
+        if($this->request){
+            $this->start();
+        }
     }
 
     public static function get($path, $call) // Метод GET
     {
         self::$routes['get'][$path] = $call;
+        return new self;
     }
 
     public static function post($path, $call) // Метод POST
@@ -47,4 +50,5 @@ final class Route
         }
         echo call_user_func($callback, $this->request);
     }
+
 }

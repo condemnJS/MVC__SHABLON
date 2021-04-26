@@ -1,6 +1,6 @@
 <?php
 
-extendsLayout('layout') ?>
+extendsLayout('layouts/layout') ?>
 
 
 <?php sectionTemplate(); ?>

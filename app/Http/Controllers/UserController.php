@@ -22,7 +22,9 @@ class UserController extends Controller
                 'password' => 'required|min:6'
             ])->validate();
 
-            Auth::attempt($request->all());
+            if(!Auth::attempt($request->all())) {
+//                return
+            }
         }
         return view('login');
     }

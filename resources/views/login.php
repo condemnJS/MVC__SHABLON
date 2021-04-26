@@ -1,4 +1,4 @@
-<?php extendsLayout('layout') ?>
+<?php extendsLayout('layouts/layout') ?>
 
 <?php sectionTemplate(); ?>
 <div class="container">

@@ -1,8 +1,10 @@
 <?php extendsLayout('layouts/layout') ?>
 
 <?php sectionTemplate(); ?>
-    <div>
-        <h1>Татар</h1>
-    </div>
+<div class="container">
+    <h2 class="mt-3">Новости</h2>
+
+</div>
 <?php endSectionTemplate(); ?>
+
 

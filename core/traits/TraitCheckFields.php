@@ -6,13 +6,13 @@ trait TraitCheckFields {
 
     public $response;
 
+
     public $messages = [
         'required' => 'Это поле обязательное',
         'email' => 'Неверный формат email',
         'confirm' => 'Пароли не совпадают',
         'min' => 'Длина поля должна быть минимум :attr символов'
     ];
-
     private function required($field) {
         if(empty($this->requests[$field])) {
             $this->response[$field][] = $this->messages[__FUNCTION__];

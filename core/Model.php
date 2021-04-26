@@ -30,6 +30,7 @@ abstract class Model
 
     public static function all()
     {
-
+        $currentModel = new static;
+        return DB::table($currentModel->table)->all();
     }
 }

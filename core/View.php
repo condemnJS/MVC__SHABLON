@@ -20,8 +20,13 @@ class View
         return self::$layout_path;
     }
 
-    static public function ob_view($template)
+    static public function ob_view($template, $params)
     {
+        if(!empty($params)) {
+            foreach ($params as $key => $param) {
+                $$key = $param;
+            }
+        }
         ob_start();
         include_once $template;
         return ob_get_clean();
