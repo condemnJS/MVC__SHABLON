@@ -34,7 +34,7 @@ class UserController extends Controller
         if($request->method() === 'post') {
             Validator::make($request->all(), [
                 'fio' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users',
                 'password' => 'required|confirm|min:6'
             ])->validate();
     

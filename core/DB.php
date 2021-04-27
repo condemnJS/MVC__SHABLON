@@ -25,13 +25,13 @@ final class DB
         $this->connect->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION); // Установка исключения об ошибках
     }
 
-    private function prepare($sql)
+    public function prepare($sql)
     {
         $this->request = $this->connect->prepare($sql);
         return $this;
     }
 
-    private function execute()
+    public function execute()
     {
         $this->request->execute();
         return $this->request;
@@ -60,11 +60,11 @@ final class DB
         return $this->query("SELECT * FROM $this->table")->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    private function query(string $sql) {
+    public function query(string $sql) {
         return $this->connect->query($sql);
     }
 
-    public function where(string $condition, string $value) {
+    public function where($condition, $value) {
         $this->conditions[$this->table][] = [$condition => $value];
         return $this;
     }

@@ -52,4 +52,5 @@ class Validator {
     private function replacer($function, $value) {
         $this->messages[$function] = str_replace(":attr", $value, $this->messages[$function]);
     }
+
 }

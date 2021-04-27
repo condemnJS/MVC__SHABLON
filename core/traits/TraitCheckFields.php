@@ -2,6 +2,8 @@
 
 namespace Core\Traits;
 
+use Core\DB;
+
 trait TraitCheckFields {
 
     public $response;
@@ -11,7 +13,8 @@ trait TraitCheckFields {
         'required' => 'Это поле обязательное',
         'email' => 'Неверный формат email',
         'confirm' => 'Пароли не совпадают',
-        'min' => 'Длина поля должна быть минимум :attr символов'
+        'min' => 'Длина поля должна быть минимум :attr символов',
+        'unique' => 'Такая запись уже существует'
     ];
     private function required($field) {
         if(empty($this->requests[$field])) {
@@ -36,6 +39,11 @@ trait TraitCheckFields {
         if(mb_strlen($this->requests[$field]) < $num) {
             $this->response[$field][] = $this->messages[__FUNCTION__];
         }
+    }
+
+    public function unique($field, $table) {
+        $el = DB::table($table)->where($field, $this->requests[$field])->first();
+        $el ? $this->response[$field][] = $this->messages[__FUNCTION__] : '';
     }
 
 }

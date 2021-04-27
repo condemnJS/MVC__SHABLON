@@ -9,7 +9,7 @@
     <div class="mt-3 d-flex flex-wrap justify-content-between">
         <?php foreach ($news as $key => $value): ?>
             <div class="card mt-3" style="width: 18rem;">
-                <img class="card-img-top" src="<?php echo $value['image'] ?>" alt="Card image cap">
+                <img class="card-img-top" src="http://project/storage/<?php echo $value['image'] ?>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $value['title']; ?></h5>
                     <p class="card-text"><?php echo $value['description'] ?></p>
