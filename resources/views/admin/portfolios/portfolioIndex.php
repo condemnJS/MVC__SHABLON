@@ -26,7 +26,7 @@
                         <td><a href="<?php echo $value['site'] ?>"><?php echo $value['site'] ?></a></td>
                         <td>
                             <a href="/admin/portfolios/<?php echo $value['id'] ?>/delete"><i class="fas fa-trash bg-danger" style="padding: 10px; cursor:pointer; color: #fff; border-radius: 6px;"></i></a>
-                            <a><i class="fas fa-edit bg-primary" style="padding: 10px; cursor:pointer; color: #fff; border-radius: 6px;"></i></a>
+                            <a href="/admin/portfolios/<?php echo $value['id'] ?>/edit"><i class="fas fa-edit bg-primary" style="padding: 10px; cursor:pointer; color: #fff; border-radius: 6px;"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

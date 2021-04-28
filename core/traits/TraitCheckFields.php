@@ -16,6 +16,7 @@ trait TraitCheckFields {
         'min' => 'Длина поля должна быть минимум :attr символов',
         'unique' => 'Такая запись уже существует'
     ];
+
     private function required($field) {
         if(empty($this->requests[$field])) {
             $this->response[$field][] = $this->messages[__FUNCTION__];

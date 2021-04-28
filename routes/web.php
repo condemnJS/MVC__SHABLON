@@ -20,8 +20,11 @@ Route::get('/admin', [AdminController::class, 'index']);
 // Новости
 Route::get('/admin/news', [NewsController::class, 'indexAdmin']);
 Route::match(['get', 'post'], '/admin/news/create', [NewsController::class, 'create']);
+Route::match(['get', 'post'], '/admin/news/{id}/edit', [NewsController::class, 'edit']);
+Route::get('/admin/news/{id}/delete', [NewsController::class, 'destroy']);
 
 // Портфолио
 Route::get('/admin/portfolios', [PortfolioController::class, 'indexAdmin']);
 Route::match(['get', 'post'], '/admin/portfolios/create', [PortfolioController::class, 'create']);
+Route::match(['get', 'post'], '/admin/portfolios/{id}/edit', [PortfolioController::class, 'edit']);
 Route::get('/admin/portfolios/{id}/delete', [PortfolioController::class, 'destroy']);

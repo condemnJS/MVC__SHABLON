@@ -39,9 +39,7 @@
                     </li>
                 <?php endif; ?>
                 <?php if(session('auth')): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/news">Новости</a>
-                    </li>
+
                 <?php endif; ?>
             </ul>
         </div>

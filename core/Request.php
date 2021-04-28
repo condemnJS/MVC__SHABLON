@@ -21,6 +21,14 @@ class Request
         return substr($path, 0, $position);
     }
 
+    public function only($params) {
+        $arr = [];
+        foreach ($params as $param) {
+            $arr[$param] = $this->body()[$param];
+        }
+        return $arr;
+    }
+
     private function body()
     {
         $body = [];

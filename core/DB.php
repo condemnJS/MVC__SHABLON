@@ -98,4 +98,19 @@ final class DB
     public function get() {
         return $this->generateRequest();
     }
+
+    public function update($model, $requests) {
+        $id = $model['id'];
+        $filter = "";
+        $counter = 0;
+        foreach ($requests as $key => $request) {
+            $counter++;
+            if(count($requests) !== $counter) {
+                $filter .= $key . '=' . "'$request'" . ', ';
+            } else {
+                $filter .= $key . '=' . "'$request'";
+            }
+        }
+        $this->prepare("UPDATE $this->table SET $filter WHERE id = $id")->execute();
+    }
 }

@@ -40,4 +40,21 @@ class PortfolioController extends Controller
         Portfolio::delete($portfolio);
         return redirect('/admin/portfolios');
     }
+
+    public function edit(Request $request, $id) {
+        $portfolio = Portfolio::find($id);
+
+        if($request->method() === 'post') {
+            Validator::make($request->all(), [
+                'year' => 'required',
+                'description' => 'required',
+                'site' => 'required'
+            ])->validate();
+
+            Portfolio::update($portfolio, $request->all());
+            return back()->with(['message' => 'Портфолио успешно обновлено']);
+        }
+
+        return view('admin/portfolios/portfolioEdit', ['portfolio' => $portfolio]);
+    }
 }

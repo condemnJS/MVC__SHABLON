@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 27 2021 г., 08:48
+-- Время создания: Апр 28 2021 г., 09:30
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.14
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- База данных: `tatarmvc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int NOT NULL,
+  `text` text NOT NULL,
+  `user_id` int NOT NULL,
+  `news_id` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -42,7 +57,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `title`, `description`, `image`, `user_id`, `created_at`, `updated_at`) VALUES
-(51, 'Татар', 'тавоыавоыавоы', 'news/775f7d983dc2454a62163811fe3e5206.jpg', 9, '2021-04-27 03:39:10', NULL);
+(57, 'ТОПОВАЯ СТАТЬСЯ', 'rgdfgdfgdf', 'news/021c5e88c8ec8c1f292e9b835574d0ad.jpg', 9, '2021-04-28 06:24:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -62,9 +77,7 @@ CREATE TABLE `portfolios` (
 --
 
 INSERT INTO `portfolios` (`id`, `year`, `description`, `site`) VALUES
-(1, '2021-04-25', 'ОПИСНАИЕ', 'https://github.com/condemnJS/MVC__SHABLON'),
-(2, '2021-04-25', 'ОПИСНАИЕ', 'https://github.com/condemnJS/MVC__SHABLON'),
-(3, '2021-04-22', 'Татарское описание', 'https://github.com/condemnJS/MVC__SHABLON');
+(6, '2021-05-01', 'МАМЕДДДД', 'ВАСЯ ПУПКИН 228');
 
 -- --------------------------------------------------------
 
@@ -111,6 +124,12 @@ INSERT INTO `users` (`id`, `fio`, `email`, `password`, `role_id`) VALUES
 --
 
 --
+-- Индексы таблицы `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `news`
 --
 ALTER TABLE `news`
@@ -141,16 +160,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT для таблицы `portfolios`
 --
 ALTER TABLE `portfolios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`

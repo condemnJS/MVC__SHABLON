@@ -46,4 +46,9 @@ abstract class Model
         DB::table($currentModel->table)->where('id', $model['id'])->delete();
     }
 
+    static public function update($model, $requests) {
+        $currentModel = new static;
+        DB::table($currentModel->table)->update($model, $requests);
+    }
+
 }
