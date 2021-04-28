@@ -24,3 +24,4 @@ Route::match(['get', 'post'], '/admin/news/create', [NewsController::class, 'cre
 // Портфолио
 Route::get('/admin/portfolios', [PortfolioController::class, 'indexAdmin']);
 Route::match(['get', 'post'], '/admin/portfolios/create', [PortfolioController::class, 'create']);
+Route::get('/admin/portfolios/{id}/delete', [PortfolioController::class, 'destroy']);

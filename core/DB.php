@@ -84,6 +84,11 @@ final class DB
         return $this->prepare("SELECT * FROM $this->table WHERE $cond")->execute()->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function delete() {
+        $id = $this->conditions[$this->table][0]['id'];
+        $this->prepare("DELETE FROM $this->table WHERE (id) = ('$id')")->execute();
+    }
+
     public function first() {
         if(!empty($this->generateRequest())) {
             return $this->generateRequest()[0];

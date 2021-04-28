@@ -12,7 +12,8 @@ use Core\Validator;
 class PortfolioController extends Controller
 {
     public function indexAdmin() {
-        return view('admin/portfolios/portfolioIndex');
+        $portfolios = Portfolio::all();
+        return view('admin/portfolios/portfolioIndex', ['portfolios' => $portfolios]);
     }
 
     public function create(Request $request) {
@@ -32,5 +33,11 @@ class PortfolioController extends Controller
             return back()->with(['message' => 'Запись успешно создана']);
         }
         return view('admin/portfolios/portfolioCreate');
+    }
+
+    public function destroy(Request $request, $id) {
+        $portfolio = Portfolio::find($id);
+        Portfolio::delete($portfolio);
+        return redirect('/admin/portfolios');
     }
 }

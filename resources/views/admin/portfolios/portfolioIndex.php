@@ -18,16 +18,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>
-                        <i class="fas fa-trash"></i>
-                        <i class="fas fa-edit"></i>
-                    </td>
-                </tr>
+                <?php foreach ($portfolios as $key => $value): ?>
+                    <tr>
+                        <th scope="row"><?php echo $value['id'] ?></th>
+                        <td><?php echo $value['year'] ?></td>
+                        <td><?php echo $value['description'] ?></td>
+                        <td><a href="<?php echo $value['site'] ?>"><?php echo $value['site'] ?></a></td>
+                        <td>
+                            <a href="/admin/portfolios/<?php echo $value['id'] ?>/delete"><i class="fas fa-trash bg-danger" style="padding: 10px; cursor:pointer; color: #fff; border-radius: 6px;"></i></a>
+                            <a><i class="fas fa-edit bg-primary" style="padding: 10px; cursor:pointer; color: #fff; border-radius: 6px;"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
